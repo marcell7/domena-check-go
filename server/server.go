@@ -74,7 +74,7 @@ func (s *Server) startDomainCheckingJob(body PostVerifyRequest) error {
 	txtVerified := false
 	cnameVerified := false
 	retries := 0
-	ticker := time.NewTicker(2 * time.Second)
+	ticker := time.NewTicker(time.Duration(s.Config.RetryInterval) * time.Second)
 	done := make(chan struct{})
 	for {
 		select {
